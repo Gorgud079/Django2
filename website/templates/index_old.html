@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+</head>
+<body>
+<h1>Новая страница</h1>
+
+{{ request.user.username }}
+{{ object_list.filter.order_name }}
+{% for obj in object_list %}
+{% if obj.order_name == 'Анна' %}
+<h2>{{ obj.id }} - {{ obj.order_name }} - {{ obj.order_phone}} - {{ obj.order_dt }}</h2>
+{% endif %}
+{% endfor %}
+{% if object_list %}
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Data</th>
+        <th>Name</th>
+        <th>Phone</th>
+    </tr>
+{% for obj in object_list %}
+    <tr>
+        <th>{{ obj.id }}</th>
+        <th>{{ obj.order_dt }}</th>
+        <th>{{ obj.order_name }}</th>
+        <th>{{ obj.order_phone }}</th>
+    </tr>
+{% endfor %}
+</table>
+{% else %}
+НЕТ ДАННЫХ
+{% endif %}
+<h1>{{ object_list }}</h1>
+<form action="{% url 'thanks_page' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">ОТПРАВИТЬ</button>
+
+</form>
+
+</body>
+</html>
