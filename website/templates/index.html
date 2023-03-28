@@ -7,5 +7,23 @@
 {% block content %}
 <h2>Данные из индекса1</h2>
 <img src="{% static 'img/1.jpg' %}" height="400">
+{{ request.user.id }}
+<h1>{{ ord1 }}</h1>
+{% for o in ord1 %}
+
+{% if o.id == 7 %}
+{{ o.order_name }} {{ o.id }}
+{% else %}
+НЕТ
+{% endif %}
+
+{% endfor %}
+<h1>NEW {{ ord2 }}</h1>
+{% if not ord2 %}
+КНОПКa {{ ord2 }}
+{% else %}
+НЕТУ кнопки
+{% endif %}
+
 {% include 'index_old.html' %}
 {% endblock %}

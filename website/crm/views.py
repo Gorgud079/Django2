@@ -4,9 +4,14 @@ from .forms import OrderForm
 
 def first_page(request):
     object_list = Order.objects.all()
+    ord1 = Order.objects.filter(order_name='Анна').values('order_name', 'id')
+    ord2 = Order.objects.filter(order_name='Анна', id=9).exists()
+    # ord1 = orders.values('order_name')
     form = OrderForm()
     return render(request, 'index.html', { 'object_list' : object_list,
-                                           'form' : form })
+                                           'form' : form,
+                                           'ord1' : ord1,
+                                           'ord2': ord2})
 
 def thanks_page(request):
     name = request.POST['name']
